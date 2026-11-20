@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   prepare:
-    runs-on: ubuntu-x64
+    runs-on: ubuntu-latest
     permissions:
       contents: write # to push the branch
       issues: write # to label the PR

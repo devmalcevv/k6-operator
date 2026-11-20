@@ -17,7 +17,7 @@ on:
 
 jobs:
   schema:
-    runs-on: ubuntu-x64
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:

@@ -40,6 +40,8 @@ KUBEBUILDER_ASSETS=$(KUBEBUILDER_ASSETS_ROOT)/kubebuilder/bin
 
 .PHONY: test
 test: manifests generate fmt vet envtest ## Run unit tests.
+	echo "ENVTEST_K8S_VERSION test"
+	echo $(ENVTEST_K8S_VERSION)
 	KUBEBUILDER_ASSETS="$(shell $(ENVTEST) use $(ENVTEST_K8S_VERSION) --bin-dir $(LOCALBIN) -p path)" go test -race $$(go list ./... | grep -v /e2e) -coverprofile cover.out
 
 e2e: deploy ## Run an end-to-end test.
@@ -235,7 +237,7 @@ HELM_VERSION ?= v3.7.2
 ENVTEST_VERSION ?= release-0.19
 GOLANGCI_LINT_VERSION ?= v2.12.1
 # ENVTEST_K8S_VERSION refers to the version of kubebuilder assets to be downloaded by envtest binary.
-ENVTEST_K8S_VERSION = 1.31.0
+ENVTEST_K8S_VERSION ?= 1.31.0
 
 .PHONY: kustomize
 kustomize: $(KUSTOMIZE) ## Download kustomize locally if necessary.
