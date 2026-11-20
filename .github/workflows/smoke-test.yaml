@@ -15,7 +15,7 @@ on:
 
 jobs:
   changes:
-    runs-on: ubuntu-x64
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     outputs:
@@ -40,7 +40,7 @@ jobs:
               - 'charts/**'
 
   docker:
-    runs-on: ubuntu-x64
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -72,7 +72,7 @@ jobs:
   kind-kustomize:
     needs: ["changes", "docker"]
     if: needs.changes.outputs.go-or-manifests == 'true'
-    runs-on: ubuntu-x64
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -112,7 +112,7 @@ jobs:
   kind-helm:
     needs: ["changes", "docker"]
     if: needs.changes.outputs.charts == 'true'
-    runs-on: ubuntu-x64
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
